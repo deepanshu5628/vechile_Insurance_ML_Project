@@ -1,0 +1,4 @@
+ipykernel
+pymongo[srv]==3.12
+from_root
+-e .

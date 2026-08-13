@@ -1,0 +1,11 @@
+[project]
+name="src"
+version="0.0.1"
+description="vehicle insurance ml pipeline"
+authors=[{name="deepanshu yadav",email="d2810201@gmail.com"}]
+
+[tool.setuptools]
+packages={find={}}
+
+[tool.setuptools.dynamic]
+dependencies={file="requirements.txt"}
