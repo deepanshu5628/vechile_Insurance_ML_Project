@@ -29,7 +29,6 @@ class FetchMongoDBData():
                 collection=self.mongo_client[database_name][collection_name]
             print("fetching data from the db")
             df=pd.DataFrame(list(collection.find()))
-            print(df.head(5))
             print(f"fetched data with size {len(df)}")
             if "_id" in df.columns.to_list():
                 df=df.drop(columns=["_id"])
