@@ -8,6 +8,7 @@ seaborn
 scikit-learn
 PyYAML
 dill # used for updloading boject into a file  similart to pickle
+imbalanced-learn #packange for handling imbalacned data set . it gives smoteenn
 # mongo db dependency
 pymongo[srv]==3.12
 pymongo
