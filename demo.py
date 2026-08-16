@@ -22,5 +22,3 @@ import sys
 
 train_pip=TrainingPipeline()
 res=train_pip.run_pipeline()
-print(res)
-

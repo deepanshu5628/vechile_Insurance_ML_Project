@@ -37,7 +37,7 @@ def write_yaml_file(file_path:str,content:object,replace:bool=False)->None:
         raise MyException(e,sys)
 
 
-def load_objects(file_path:str)->object:
+def load_object(file_path:str)->object:
     try:
         with open(file_path,"rb") as file_obj:
             obj=dill.load(file_obj)
@@ -45,6 +45,14 @@ def load_objects(file_path:str)->object:
     except Exception as e:
         raise MyException(e,sys)
 
+def save_object(file_path:str,obj:object)->None:
+    try:
+        # make sure the dir exist 
+        os.makedirs(os.path.dirname(file_path),exist_ok=True)
+        with open(file_path,"wb")as obj_file:
+            dill.dump(obj,obj_file)
+    except Exception as e:
+        raise MyException(e,sys)
 
 def save_numpy_arr_data(file_path:str,arr:np.array)->None:
     try:
