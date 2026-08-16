@@ -10,10 +10,12 @@ import pandas as pd
 
 class DataValidation:
     def __init__(self,data_ingestion_artifact:DataIngestionArtifacts,data_validaiton_config:DataValidationConfig):
-        self.schema_config=read_yaml_file(SCHEMA_FILE_PATH)
-        self.data_ingestion_artifact=data_ingestion_artifact
-        self.data_validaiton_config=data_validaiton_config
-
+        try:
+            self.schema_config=read_yaml_file(SCHEMA_FILE_PATH)
+            self.data_ingestion_artifact=data_ingestion_artifact
+            self.data_validaiton_config=data_validaiton_config
+        except Exception as e:
+            raise MyException(e,sys)
 
     def validate_no_of_columns(self,df:pd.DataFrame)->bool:
         try:
