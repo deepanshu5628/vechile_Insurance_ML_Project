@@ -16,6 +16,7 @@ TARGET_COLUMN:str="Response"
 FILE_NAME:str="data.csv"
 TRAIN_FILE_NAME:str="train.csv"
 TEST_FILE_NAME:str="test.csv"
+SCHEMA_FILE_PATH:str=os.path.join("config","schema.yaml")
 
 
 """ 
@@ -30,3 +31,5 @@ DATA_INGESTION_TEST_TRAIN_SPLIT_RATIO:float=0.25
 """
 DATA VALIDATION RELATED CONSTANTS STARTS WITH DATA_VALIDATION VAR NAME
 """
+DATA_VALIDATION_DIR_NAME:str="data_validation"
+DATA_VALIDATION_REPORT_FILE_NAME:str="report.yaml" 
