@@ -4,7 +4,11 @@ from src.constants import (PIPELINE_NAME ,TIMESTAMP,ARTIFACT_DIR,DATA_INGESTION_
                            DATA_INGESTION_TEST_TRAIN_SPLIT_RATIO,DATA_INGESTION_FEATURE_STORE_DIR,DATA_INGESTION_INGESTED_DIR,
                            FILE_NAME,TRAIN_FILE_NAME,TEST_FILE_NAME,DATA_VALIDATION_DIR_NAME,DATA_VALIDATION_REPORT_FILE_NAME,
                            DATA_TRANSFORMATION_DIR_NAME,DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR,DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR,
-                           PREPROCSSING_OBJECT_FILE_NAME)
+                           PREPROCSSING_OBJECT_FILE_NAME,MODEL_TRAINER_DIR_NAME,MODEL_TRAINER_TRAINED_MODEL_DIR,MODEL_TRAINER_TRAINED_MODEL_NAME,
+                           MODEL_TRAINER_EXPECTED_SCORE,MODEL_TRAINER_MODEL_CONFIG_FILE_PATH,MODEL_TRAINER_N_ESTIMATORS,
+                           MODEL_TRAINER_MIN_SAMPLES_SPLIT,MODEL_TRAINER_MIN_SAMPLES_LEAF,
+                           MIN_SAMPLES_SPLIT_MAX_DEPTH,MIN_SAMPLES_SPLIT_CRITERION,
+                           MIN_SAMPLES_SPLIT_RANDOM_STATE,)
 
 @dataclass
 class TrainingPipelineConfig:
@@ -36,3 +40,15 @@ class DataTransformationConfig:
     transformation_test_file_path:str=os.path.join(data_transformation_dir,DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR,TEST_FILE_NAME.replace("csv","npy"))
     transformation_object_file_path:str=os.path.join(data_transformation_dir,DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR,PREPROCSSING_OBJECT_FILE_NAME)
 
+@dataclass
+class ModelTrainerConfig:
+    model_trainer_dir:str=os.path.join(training_pipeline_config.artifact_dir,MODEL_TRAINER_DIR_NAME)
+    trained_model_file_path:str=os.path.join(model_trainer_dir,MODEL_TRAINER_TRAINED_MODEL_DIR,MODEL_TRAINER_TRAINED_MODEL_NAME)
+    expected_accuracy:float=MODEL_TRAINER_EXPECTED_SCORE
+    model_config_file_path:str=MODEL_TRAINER_MODEL_CONFIG_FILE_PATH
+    n_estimators:int=MODEL_TRAINER_N_ESTIMATORS
+    min_sample_split:int=MODEL_TRAINER_MIN_SAMPLES_SPLIT
+    min_sample_leaf:int=MODEL_TRAINER_MIN_SAMPLES_LEAF
+    max_depth:int=MIN_SAMPLES_SPLIT_MAX_DEPTH
+    criterion:str=MIN_SAMPLES_SPLIT_CRITERION
+    random_state:int=MIN_SAMPLES_SPLIT_RANDOM_STATE
