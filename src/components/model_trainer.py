@@ -69,7 +69,8 @@ class ModelTrainer:
             trained_model,classifcation_metric=self.get_model_object_and_report(train_arr=train_arr,test_arr=test_arr)
 
             # CHECK IF THE MODEL ACCURACY IS BETTER THEN THE THRESHHOLD
-            if accuracy_score(train_arr[:,-1],trained_model.predict(train_arr[:,:-1]))< self.model_trainer_config.expected_accuracy:
+            # if accuracy_score(train_arr[:,-1],trained_model.predict(train_arr[:,:-1]))< self.model_trainer_config.expected_accuracy:
+            if classifcation_metric.accuracy_score < self.model_trainer_config.expected_accuracy:
                 logging.info("no model with score above the base score ")
                 raise Exception("no model found with score above the base score ")
                 

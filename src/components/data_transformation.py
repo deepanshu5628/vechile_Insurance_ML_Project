@@ -119,12 +119,12 @@ class DataTransformation:
             logging.info("applying smoteenn for handling imbalance dataset")
             smt=SMOTEENN(sampling_strategy="minority")
             x_train,y_train=smt.fit_resample(train_input_feature_arr,train_output_feature_df)
-            x_test,y_test=smt.fit_resample(test_input_feature_arr,test_output_feature_df)
+            # x_test,y_test=smt.fit_resample(test_input_feature_arr,test_output_feature_df)
             logging.info("smoteenn applied to train-test df")
 
             # now combine the transformed input features with target features
             train_arr=np.c_[x_train,np.array(y_train)]
-            test_arr=np.c_[x_test,np.array(y_test)]
+            test_arr=np.c_[test_input_feature_arr,np.array(test_output_feature_df)]
             logging.info("feature-target concatring is done ")
 
             # paths where we have to save files 
