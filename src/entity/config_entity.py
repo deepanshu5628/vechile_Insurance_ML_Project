@@ -8,7 +8,9 @@ from src.constants import (PIPELINE_NAME ,TIMESTAMP,ARTIFACT_DIR,DATA_INGESTION_
                            MODEL_TRAINER_EXPECTED_SCORE,MODEL_TRAINER_MODEL_CONFIG_FILE_PATH,MODEL_TRAINER_N_ESTIMATORS,
                            MODEL_TRAINER_MIN_SAMPLES_SPLIT,MODEL_TRAINER_MIN_SAMPLES_LEAF,
                            MIN_SAMPLES_SPLIT_MAX_DEPTH,MIN_SAMPLES_SPLIT_CRITERION,
-                           MIN_SAMPLES_SPLIT_RANDOM_STATE,)
+                           MIN_SAMPLES_SPLIT_RANDOM_STATE,MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE,
+                           MODEL_BUCKET_NAME,MODEL_PUSHER_S3_KEY,MODEL_FILE_NAME,
+                           PRODUCTION_MODEL_DIR_PATH,LOCATION_S3)
 
 @dataclass
 class TrainingPipelineConfig:
@@ -52,3 +54,11 @@ class ModelTrainerConfig:
     max_depth:int=MIN_SAMPLES_SPLIT_MAX_DEPTH
     criterion:str=MIN_SAMPLES_SPLIT_CRITERION
     random_state:int=MIN_SAMPLES_SPLIT_RANDOM_STATE
+
+@dataclass
+class ModelEvaluationConfig:
+    change_threashold_score:float=MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE
+    bucket_name:str=MODEL_BUCKET_NAME
+    s3_model_key_path:str=MODEL_FILE_NAME
+    location_s3:bool=LOCATION_S3
+    production_model_dir_path:str=PRODUCTION_MODEL_DIR_PATH
