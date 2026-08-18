@@ -59,7 +59,7 @@ class ModelTrainer:
         except Exception as e :
             raise MyException(e,sys)
 
-    def initiate_data_validation(self)->ModelTrainerArtifacts:
+    def initiate_model_trainer(self)->ModelTrainerArtifacts:
         try:
             # fetch the train_arr and test_arr (np)
             train_arr=load_numpy_arr_data(self.data_transformation_artifact.transformed_train_file_path)
@@ -85,7 +85,11 @@ class ModelTrainer:
                 trained_model_file_path=self.model_trainer_config.trained_model_file_path,
                 metric_artifact=classifcation_metric
             )
-            logging.info(f"model trainer artifact {model_trainer_artifact}")
+            logging.info(f"model trainer artifact ")
+            logging.info(f"accuracy {model_trainer_artifact.metric_artifact.accuracy_score}")
+            logging.info(f"f1 {model_trainer_artifact.metric_artifact.f1_score}")
+            logging.info(f"precesion {model_trainer_artifact.metric_artifact.precision_score}")
+            logging.info(f"recall {model_trainer_artifact.metric_artifact.recall_score}")
             return model_trainer_artifact
         except Exception as e :
             raise MyException(e,sys)

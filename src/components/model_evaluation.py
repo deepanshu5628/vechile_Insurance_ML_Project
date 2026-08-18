@@ -36,6 +36,7 @@ class ModelEvaluation:
                 test_y=test_npy[:,-1]
                 output=prod_model.predict(test_x)
                 prod_f1_score=f1_score(test_y,output)
+                logging.info(f"prod model f1 score {prod_f1_score}")
                 # compare the f1 of prod+threshodl with trained model
                 trained_model_performence_imporved:bool=prod_f1_score+self.model_evaluation_configs.change_threashold_score< self.model_trainer_artifact.metric_artifact.f1_score
                 if trained_model_performence_imporved:
@@ -52,15 +53,16 @@ class ModelEvaluation:
                 # prod is empty
                 logging.info("prod model dir is empty")
                 is_accepted=True
-                improved_acc=self.model_trainer_artifact.metric_artifact.f1_score-0
+                improved_acc=0
 
             model_evaluation_artifact=ModelEvaluationArtifacts(
-                location_s3=False,
+                location_s3=self.model_evaluation_configs.location_s3,
                 is_model_accepted=is_accepted,
                 s3_model_path="",
                 production_model_dir_path=self.model_evaluation_configs.production_model_dir_path,
+                production_model_file_path=os.path.join(self.model_evaluation_configs.production_model_dir_path,self.model_evaluation_configs.s3_model_key_path),
                 trained_model_path=self.model_trainer_artifact.trained_model_file_path,
-                improved_accuracy=improved_acc
+                improved_performance=improved_acc
                 )
             return model_evaluation_artifact
         except Exception as e :
@@ -70,7 +72,8 @@ class ModelEvaluation:
         try:
             logging.info("Entered initiate_model_evaluation method of ModelEvaluation class")
             model_eval_artifact=self.model_registory_on_aws() if self.model_evaluation_configs.location_s3 else self.model_registory_local()
-            logging.info("Exited initiate_model_evaluation method of ModelEvaluation class")
+            logging.info(f"Exited initiate_model_evaluation method of ModelEvaluation class")
+            logging.info(model_eval_artifact)
             return model_eval_artifact                
         except Exception as e:
             raise MyException(e,sys)

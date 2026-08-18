@@ -31,8 +31,17 @@ class ModelTrainerArtifacts:
 @dataclass
 class ModelEvaluationArtifacts:
     is_model_accepted:bool
-    improved_accuracy:float
+    improved_performance:float
     s3_model_path:str
     trained_model_path:str
     production_model_dir_path:str
+    production_model_file_path:str
     location_s3:bool
+
+@dataclass 
+class ModelPusherArtifacts:
+    bucket_name:str
+    s3_model_path:str
+    location_s3:bool
+    production_model_dir_path:str
+    production_model_file_path:str
