@@ -44,7 +44,7 @@ class DataIngestion:
         on the output path:->
         """
         try:
-            train_set,test_set=train_test_split(dataFrame,test_size=self.data_ingestion_configs.train_test_split_ratio)
+            train_set,test_set=train_test_split(dataFrame,test_size=self.data_ingestion_configs.train_test_split_ratio,random_state=self.data_ingestion_configs.random_state)
             logging.info("performed train& test split ration on the data ")
             file_path=self.data_ingestion_configs.training_file_path
 

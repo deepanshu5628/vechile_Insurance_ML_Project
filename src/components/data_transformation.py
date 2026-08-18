@@ -117,7 +117,7 @@ class DataTransformation:
             logging.info("Transformation done end to end to Train&test df")
 
             logging.info("applying smoteenn for handling imbalance dataset")
-            smt=SMOTEENN(sampling_strategy="minority")
+            smt=SMOTEENN(sampling_strategy="minority",random_state=self.data_transformation_configs.random_state)
             x_train,y_train=smt.fit_resample(train_input_feature_arr,train_output_feature_df)
             # x_test,y_test=smt.fit_resample(test_input_feature_arr,test_output_feature_df)
             logging.info("smoteenn applied to train-test df")

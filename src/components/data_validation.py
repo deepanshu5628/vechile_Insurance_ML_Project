@@ -39,14 +39,14 @@ class DataValidation:
                     missing_num_cols.append(col)
 
             if len(missing_num_cols)>0:
-                logging.error("missing num cols are ",missing_num_cols)    
+                logging.error(f"missing num cols are {missing_num_cols}")    
 
             for col in cat_cols:
                 if col not in df.columns:
                     missing_cat_cols.append(col)
 
             if len(missing_cat_cols)>0:
-                logging.error("missing cat cols are ",missing_cat_cols)
+                logging.error(f"missing cat cols are {missing_cat_cols}")
 
             if len(missing_num_cols)>0 or len(missing_cat_cols)>0:
                 return False

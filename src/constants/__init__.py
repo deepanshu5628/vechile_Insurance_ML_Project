@@ -11,6 +11,7 @@ ARTIFACT_DIR:str="artifacts"
 TIMESTAMP:str=datetime.now().strftime("%m_%d_%Y_%H_%M_%S")
 
 MODEL_FILE_NAME="model.pkl"
+RANDOM_STATE=42
 PREPROCSSING_OBJECT_FILE_NAME = "preprocessing.pkl"
 TARGET_COLUMN:str="Response"
 
@@ -23,7 +24,8 @@ SCHEMA_FILE_PATH:str=os.path.join("config","schema.yaml")
 """ 
 Data ingestion related constants start with DATA_INGESTION VAR NAME
 """
-DATA_INGESTION_COLLECTION_NAME:str="vehicle_insurance_collection"
+# DATA_INGESTION_COLLECTION_NAME:str="vehicle_insurance_collection"
+DATA_INGESTION_COLLECTION_NAME:str="vehicle_insurance_collection_sm"
 DATA_INGESTION_DIR_NAME:str="data_ingestion"
 DATA_INGESTION_FEATURE_STORE_DIR:str="feature_store"
 DATA_INGESTION_INGESTED_DIR:str="ingested"
@@ -51,7 +53,7 @@ MODEL_TRAINER_TRAINED_MODEL_DIR: str = "trained_model"
 MODEL_TRAINER_TRAINED_MODEL_NAME: str = "model.pkl"
 MODEL_TRAINER_EXPECTED_SCORE: float = 0.6
 MODEL_TRAINER_MODEL_CONFIG_FILE_PATH: str = os.path.join("config", "model.yaml")
-MODEL_TRAINER_N_ESTIMATORS=200
+MODEL_TRAINER_N_ESTIMATORS=400
 MODEL_TRAINER_MIN_SAMPLES_SPLIT: int = 7
 MODEL_TRAINER_MIN_SAMPLES_LEAF: int = 6
 MIN_SAMPLES_SPLIT_MAX_DEPTH: int = 10
@@ -62,10 +64,10 @@ MIN_SAMPLES_SPLIT_RANDOM_STATE: int = 101
 MODEL Evaluation related constants
 """
 MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE: float = 0.02
-LOCATION_S3:bool=False
 MODEL_BUCKET_NAME:str = "depansuydvvehichlemlpipeline"
-PRODUCTION_MODEL_DIR_PATH="production_s3"
 MODEL_PUSHER_S3_KEY:str = MODEL_FILE_NAME
+LOCATION_S3:bool=False
+PRODUCTION_MODEL_DIR_PATH="production_s3"
 
 
 # aws related configs

@@ -10,7 +10,7 @@ from src.constants import (PIPELINE_NAME ,TIMESTAMP,ARTIFACT_DIR,DATA_INGESTION_
                            MIN_SAMPLES_SPLIT_MAX_DEPTH,MIN_SAMPLES_SPLIT_CRITERION,
                            MIN_SAMPLES_SPLIT_RANDOM_STATE,MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE,
                            MODEL_BUCKET_NAME,MODEL_PUSHER_S3_KEY,MODEL_FILE_NAME,
-                           PRODUCTION_MODEL_DIR_PATH,LOCATION_S3)
+                           PRODUCTION_MODEL_DIR_PATH,LOCATION_S3,RANDOM_STATE)
 
 @dataclass
 class TrainingPipelineConfig:
@@ -29,6 +29,7 @@ class DataIngestionConfig:
     testing_file_path:str=os.path.join(data_ingestion_dir,DATA_INGESTION_INGESTED_DIR,TEST_FILE_NAME)
     train_test_split_ratio:float=DATA_INGESTION_TEST_TRAIN_SPLIT_RATIO
     collection_name:str=DATA_INGESTION_COLLECTION_NAME
+    random_state:int=RANDOM_STATE
 
 @dataclass
 class DataValidationConfig:
@@ -41,6 +42,7 @@ class DataTransformationConfig:
     transformation_train_file_path:str=os.path.join(data_transformation_dir,DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR,TRAIN_FILE_NAME.replace("csv","npy"))
     transformation_test_file_path:str=os.path.join(data_transformation_dir,DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR,TEST_FILE_NAME.replace("csv","npy"))
     transformation_object_file_path:str=os.path.join(data_transformation_dir,DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR,PREPROCSSING_OBJECT_FILE_NAME)
+    random_state:int=RANDOM_STATE
 
 @dataclass
 class ModelTrainerConfig:
@@ -62,3 +64,8 @@ class ModelEvaluationConfig:
     s3_model_key_path:str=MODEL_FILE_NAME
     location_s3:bool=LOCATION_S3
     production_model_dir_path:str=PRODUCTION_MODEL_DIR_PATH
+
+@dataclass
+class ModelPusherConfg:
+    bucket_name:str=MODEL_BUCKET_NAME
+    s3_model_key_path:str=MODEL_FILE_NAME
